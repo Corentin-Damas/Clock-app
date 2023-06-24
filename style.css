@@ -37,7 +37,7 @@ body {
 h1 {
   font-size: 20rem;
   line-height: 20rem;
-  letter-spacing: -5;
+  letter-spacing: -5px;
   font-weight: 700;
   color: var(--cl-white);
 }
@@ -52,7 +52,7 @@ h3 {
   font-size: 2.4rem;
   line-height: 2.8rem;
   font-weight: 700;
-  letter-spacing: -4.8;
+  letter-spacing: 4.8px;
   text-transform: uppercase;
   color: var(--cl-white);
 }
@@ -60,7 +60,7 @@ h4 {
   font-size: 2rem;
   line-height: 2.8rem;
   font-weight: 400;
-  letter-spacing: 4;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--cl-white);
 }
@@ -75,14 +75,16 @@ h6 {
   font-size: 1.5rem;
   line-height: 2.8rem;
   font-weight: 700;
-  letter-spacing: 3;
+  letter-spacing: 3px;
   color: var(--cl-white);
+  text-transform: uppercase;
 }
 p {
   font-size: 1.8rem;
   line-height: 2.8rem;
   font-weight: 400;
   color: var(--cl-white);
+  
 }
 
 /* MAIN ////////////////////// */
@@ -125,56 +127,77 @@ p {
   align-self: flex-end;
 }
 
-
 .quote__text {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
-
 
 .global-info > *:not(:last-child) {
-    margin-bottom: 2.6rem;
-
+  margin-bottom: 2.6rem;
 }
 
-.gi__welcome{
-    display: flex;
-    gap: 2rem;
+.gi__welcome {
+  display: flex;
+  gap: 2rem;
 }
 
 .gi__clock {
-    display: flex;
-    align-items: baseline;
-    gap: 3rem;
+  display: flex;
+  align-items: baseline;
+  gap: 3rem;
 }
 
 .btn,
 .btn:active,
 .btn:focus {
-    outline: none;
-    width: 14.6rem;
-    height: 5.6rem;
-    border: 0;
-    border-radius: 10rem;
-    background-color: var(--cl-white);
+  outline: none;
+  border: 0;
+  position: relative;
+  display: inline-block;
+  height: 5rem;
 
+  padding-inline: 1rem;
+  border-radius: 20rem;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  gap: 2rem;
+  cursor: pointer;
 }
 
 .btn-text {
-    color: var(--cl-grey);
+ color: var(--cl-grey);
+ transform: translateX(1rem);
 }
 
+.btn-icon-wrap {
+  width: 4rem;
+  height: 4rem;
+  position: relative;
+  background-color: var(--cl-black);
+  border-radius: 50%;
+}
+
+.btn:hover .btn-icon-wrap {
+
+  background-color: var(--cl-grey);
+
+}
+
+
 .btn-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-    background-color: var(--cl-grey);
-
-    position: relative;
-    height: 4.5rem;
-    width: 4.5rem;
-    padding: 1.3rem 1rem;
-    border-radius: 50%;
+.btn-icon::after {
+  background-color: blue;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100;
 }
