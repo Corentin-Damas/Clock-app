@@ -1,24 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Clock App</title>
-</head>
-<body>
-  , it's currently
+    <link rel="stylesheet" href="style.css" />
 
-  in
-
-  More
+    <title>Frontend Mentor | Clock App</title>
+  </head>
+  <body>
+    <main class="container">
+      <div class="quote">
+        <p class="quote__text">
+          " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias
+          maiores cumque sed tenetur sint. Incidunt voluptatibus accusantium hic
+          nostrum sit delectus sapiente, quisquam tempora, recusandae ab saepe.
+          Nisi, voluptates dolore? "
+        </p>
+        <h5 class="quote__author">Api author</h5>
+      </div>
+      <div class="global-info">
+        <div class="gi__welcome">
+          <img src="assets/desktop/icon-sun.svg" alt="" />
+          <h4>
+            Good <span class="gi__periodOfDay">*****</span>, it's currently
+          </h4>
+        </div>
+        <div class="gi__clock">
+          <h1 class="gi__time">HH:MM</h1>
+          <h3 class="gi__timeZone">Zone</h3>
+        </div>
+        <h3 class="gi__location">
+          In <span class="location">Current City, Country </span>
+        </h3>
+      </div>
+      <div class="more-btn">
+        <button class="btn">
+          <h4 class="btn-text">Show</h4>
+          <img
+            class="btn-icon"
+            src="assets/desktop/icon-arrow-down.svg"
+            alt=""
+          />
+        </button>
+      </div>
+    </main>
+    <!-- More
   Less
 
   Current timezone
   Day of the year
   Day of the week
-  Week number
-</body>
+  Week number -->
+  </body>
 </html>
