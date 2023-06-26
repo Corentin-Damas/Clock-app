@@ -117,20 +117,6 @@ function display_currentTime() {
   }
 }
 
-  // const ampm = currentTime.getHours( ) >= 12 ? ' PM' : ' AM';
-// var option = { weekday: "long", day: "numeric", month: "long" };
-// // var fullDate = today.toLocaleDateString("en-US", option);
-// var options = {
-//   weekday: "long",
-//   year: "numeric",
-//   month: "long",
-//   day: "numeric",
-// };
-// var today = new Date();
-
-// console.log(today.toLocaleDateString("en-US")); // 9/17/2016
-// console.log(today.toLocaleDateString("en-US", options)); // Saturday, September 17, 2016
-// console.log(today.toLocaleDateString("hi-IN", options));//
 
 // DEV TOOLS ////////////////////////////////////////////////
 // Some API are limited on requests, to limit them, i've added a call btn to do all request in one and not evertime the website refresh during development
@@ -142,5 +128,5 @@ triggerAPICalls.addEventListener("click", function () {
 
 
 detailBtn.addEventListener('click', function(){
-  
+  // put all the classes that are supposed to be added to the html element so that we have a detail window opening
 })
