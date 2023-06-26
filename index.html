@@ -15,8 +15,8 @@
     <title>Frontend Mentor | Clock App</title>
   </head>
   <body>
-    <main class="container">
-      <div class="quote">
+    <main class="container container-detail">
+      <div class="quote more-detail-quote">
         <p class="quote__text">
           " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias
           maiores cumque sed tenetur sint. Incidunt voluptatibus accusantium hic
@@ -25,22 +25,28 @@
         </p>
         <h5 class="quote__author">Api author</h5>
       </div>
-      <div class="global-info">
+      <div class="dev-tool">
+        <button class="btn_apicalls">
+          call api
+        </button>
+      </div>
+      <div class="global-info more-detail-hour">
         <div class="gi__welcome">
-          <img src="assets/desktop/icon-sun.svg" alt="" />
+          <img class="icon-day-period" src="assets/desktop/icon-sun.svg" alt="" />
           <h4>
             Good <span class="gi__periodOfDay">*****</span>, it's currently
           </h4>
         </div>
         <div class="gi__clock">
-          <h1 class="gi__time">HH:MM</h1>
+          <h1 class="gi__time"><span class="time-hour">HH</span>:<span class="time-min">MM</span></h1>
           <h3 class="gi__timeZone">Zone</h3>
         </div>
         <h3 class="gi__location">
           In <span class="location">Current City, Country </span>
         </h3>
+        <p class="message"></p>
       </div>
-      <div class="more-btn">
+      <div class="more-btn more-detail-btn">
         <button class="btn">
           <h6 class="btn-text">More</h6>
           <div class="btn-icon-wrap">
@@ -52,6 +58,9 @@
           </div>
         </button>
       </div>
+      <div class="time-detail">
+        <h1>test</h1>
+      </div>
     </main>
     <!-- More
   Less
@@ -61,4 +70,6 @@
   Day of the week
   Week number -->
   </body>
+  <script type="text/javascript" src="config.js"></script>
+  <script type="text/javascript" src="script.js"></script>
 </html>
