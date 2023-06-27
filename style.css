@@ -185,6 +185,7 @@ p {
 }
 
 .btn-icon {
+  /* create icon here or doing a ::after in icon-wrap */
   /* background-image: url(assets/desktop/icon-arrow-down.svg); */
   /* position: absolute; */
   /* top: 50%;
