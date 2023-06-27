@@ -1,14 +1,9 @@
 const API_KEY_GEOLOC = config.API_KEY_GEOLOC;
 
-// View the current time && Layout change depending on the day period (night/ day)
-// Show Current Timezone / Day of the year / day of the week / week number
-
 const triggerAPICalls = document.querySelector(".btn_apicalls");
 const detailBtn = document.querySelector('.btn')
 
 // GET RANDOM PROGRAMING QUOTE || JOKE /////////////////////////////////////
-//https://github.com/skolakoda/programming-quotes-api
-//https://github.com/lukePeavey/quotable
 const quoteText = document.querySelector(".quote__text");
 const quoteAuthor = document.querySelector(".quote__author");
 
@@ -19,7 +14,8 @@ async function getJoke() {
   console.log(jsonData);
   return jsonData;
 }
-// Depending if i want to add more joke from differents API later as long has the reponse from this api dosn't countain "Chuck norris" = durty way
+// Depending if i want to add more joke from differents API later as
+// long has the reponse from this api dosn't countain "Chuck norris" = durty way
 if (URL === "https://api.chucknorris.io/jokes/random") {
   quoteAuthor.innerHTML = "Chuck Norris";
 }
@@ -65,8 +61,11 @@ function getLocation() {
 // TIME ////////////////////////////////////////////////
 const hours = document.querySelector(".time-hour");
 const minutes = document.querySelector(".time-min");
-const timeZoneLoc = document.querySelector(".gi__timeZone");
+const timeZoneLoc = document.querySelector(".timeZone");
 const timePeriod = document.querySelector(".gi__periodOfDay");
+const weekDay = document.querySelector('.weekday')
+const yearDay = document.querySelector('.yearDay')
+const weekNumber = document.querySelector('.weekNumber')
 
 const iconDayPeriod = document.querySelector('.icon-day-period')
 
@@ -103,8 +102,6 @@ function display_currentTime() {
 
   // Refresh the clock to for everyminutes// make sure also that if we log at sec 45 it will not log every 
   //minutes at second 45 
-  timeZoneLoc.innerHTML = `Time Zone: \n ${Intl.DateTimeFormat().resolvedOptions().timeZone}`;
-
   const currentSecond = currentTime.getSeconds();
 
   if (currentSecond >= 3) {
@@ -115,18 +112,61 @@ function display_currentTime() {
     refresh = 1000 * 60;
     setTimeout(display_currentTime, refresh);
   }
+
+
+  // MORE DETAILS
+
+  timeZoneLoc.innerHTML = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get time zone ex Europe/paris
+  
+  weekDay.innerHTML = currentTime.getDay() // Get and display day of the week in Integer 0 = Sunday 1= Monday
+
+  // Compare the UTC stamp of now and the UTC stamp of the begining of the year
+  // The difference is in millisec, we need to convert it back to Days
+  function getDayOfYear(date = new Date()) {
+    const timestamp1 = Date.UTC(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+    );
+    const timestamp2 = Date.UTC(date.getFullYear(), 0, 0);
+    const differenceInMilliseconds = timestamp1 - timestamp2;
+    const differenceInDays = differenceInMilliseconds / 1000 / 60 / 60 / 24;
+    return differenceInDays;
+  }
+  yearDay.innerHTML = getDayOfYear() // Display on main page the day of the year
+
+  // Do the same but for the week
+  startDate = new Date(currentTime.getFullYear(), 0, 1);
+  const days = Math.floor((currentTime - startDate) /
+    (24 * 60 * 60 * 1000));
+  const weekNumberInt = Math.ceil(days / 7); // Main differnce with previous is here where we pass from day to week
+
+  weekNumber.innerHTML = weekNumberInt // Display on main page the week number
+
 }
+
 
 
 // DEV TOOLS ////////////////////////////////////////////////
 // Some API are limited on requests, to limit them, i've added a call btn to do all request in one and not evertime the website refresh during development
-triggerAPICalls.addEventListener("click", function () {
-  getJoke().then((data) => (quoteText.innerHTML = data.value));
-  getLocation();
-  display_currentTime();
-});
+// triggerAPICalls.addEventListener("click", function () {
+  // getJoke().then((data) => (quoteText.innerHTML = data.value));
+  // getLocation();
+  // display_currentTime();
+// });
+// getJoke().then((data) => (quoteText.innerHTML = data.value));
+// getLocation();
+display_currentTime();
 
 
+
+// Moving Everything Together /////////////////////////////////////
 detailBtn.addEventListener('click', function(){
-  // put all the classes that are supposed to be added to the html element so that we have a detail window opening
+  document.querySelector('.container').classList.toggle('container-detail')
+  document.querySelector('.quote').classList.toggle('more-detail-quote')
+  document.querySelector('.global-info').classList.toggle('more-detail-hour')
+  document.querySelector('.time-detail').classList.toggle('hide')
+  document.querySelector('.more-btn').classList.toggle('btn-up')
+  // toggle arrow direction 
+  // Change HTML text if condition ? turnury  
 })
