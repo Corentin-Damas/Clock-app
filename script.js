@@ -170,3 +170,5 @@ detailBtn.addEventListener('click', function(){
   // toggle arrow direction 
   // Change HTML text if condition ? turnury  
 })
+
+// is there a better way to implement all change incase of transition ? 
