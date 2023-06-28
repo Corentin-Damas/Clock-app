@@ -1,7 +1,8 @@
 const API_KEY_GEOLOC = config.API_KEY_GEOLOC;
-const detailBtn = document.querySelector('.btn')
+const detailBtn = document.querySelector(".btn");
+const mainContainer = document.querySelector(".container");
 
-let isNight = false
+let isNight = false;
 // GET RANDOM PROGRAMING QUOTE || JOKE /////////////////////////////////////
 const quoteText = document.querySelector(".quote__text");
 const quoteAuthor = document.querySelector(".quote__author");
@@ -61,14 +62,15 @@ const hours = document.querySelector(".time-hour");
 const minutes = document.querySelector(".time-min");
 const timeZoneLoc = document.querySelector(".timeZone");
 const timePeriod = document.querySelector(".gi__periodOfDay");
-const timeformat = document.querySelector('.gi__timeFormat')
-const weekDay = document.querySelector('.weekday')
-const yearDay = document.querySelector('.yearDay')
-const weekNumber = document.querySelector('.weekNumber')
-const iconDayPeriod = document.querySelector('.icon-day-period')
+const timeformat = document.querySelector(".gi__timeFormat");
+const weekDay = document.querySelector(".weekday");
+const yearDay = document.querySelector(".yearDay");
+const weekNumber = document.querySelector(".weekNumber");
+const iconDayPeriod = document.querySelector(".icon-day-period");
 
 function display_currentTime() {
   const currentTime = new Date();
+  // const currentTime = new Date('December 17, 1995 03:24:00'); // Test for the night design
 
   // Show in witch period of the day we are Morning | After-noon | Night
   if (currentTime.getHours() >= 6 && currentTime.getHours() < 12) {
@@ -76,13 +78,14 @@ function display_currentTime() {
   }
   if (currentTime.getHours() >= 12 && currentTime.getHours() < 22) {
     timePeriod.innerHTML = "Afternoon";
+    
   } else {
-    timePeriod.innerHTML = "Evening"
-    iconDayPeriod.src = "assets/desktop/icon-moon.svg"
+    timePeriod.innerHTML = "Evening";
+    iconDayPeriod.src = "assets/desktop/icon-moon.svg";
     isNight = true
-  };
+  }
 
-  timeformat.innerHTML = currentTime.toUTCString().slice(-4,) // At the end of the string the time zone type is used
+  timeformat.innerHTML = currentTime.toUTCString().slice(-4); // At the end of the string the time zone type is used
 
   // Get Hours and Minutes for the digital clock && make sure that it show 2digits everytime
   const currentHour = currentTime.getHours();
@@ -101,8 +104,8 @@ function display_currentTime() {
     minutes.innerHTML = currentMin;
   }
 
-  // Refresh the clock to for everyminutes// make sure also that if we log at sec 45 it will not log every 
-  //minutes at second 45 
+  // Refresh the clock to for everyminutes// make sure also that if we log at sec 45 it will not log every
+  //minutes at second 45
   const currentSecond = currentTime.getSeconds();
 
   if (currentSecond >= 3) {
@@ -116,7 +119,7 @@ function display_currentTime() {
 
   // MORE DETAILS Panel
   timeZoneLoc.innerHTML = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get time zone ex Europe/paris
-  weekDay.innerHTML = currentTime.getDay() // Get and display day of the week in Integer 0 = Sunday 1= Monday
+  weekDay.innerHTML = currentTime.getDay(); // Get and display day of the week in Integer 0 = Sunday 1= Monday
 
   // Compare the UTC stamp of now and the UTC stamp of the begining of the year
   // The difference is in millisec, we need to convert it back to Days
@@ -124,43 +127,46 @@ function display_currentTime() {
     const timestamp1 = Date.UTC(
       date.getFullYear(),
       date.getMonth(),
-      date.getDate(),
+      date.getDate()
     );
     const timestamp2 = Date.UTC(date.getFullYear(), 0, 0);
     const differenceInMilliseconds = timestamp1 - timestamp2;
     const differenceInDays = differenceInMilliseconds / 1000 / 60 / 60 / 24;
     return differenceInDays;
   }
-  yearDay.innerHTML = getDayOfYear() // Display on main page the day of the year
+  yearDay.innerHTML = getDayOfYear(); // Display on main page the day of the year
 
   // Do the same but for the week
   startDate = new Date(currentTime.getFullYear(), 0, 1);
-  const days = Math.floor((currentTime - startDate) /
-    (24 * 60 * 60 * 1000));
+  const days = Math.floor((currentTime - startDate) / (24 * 60 * 60 * 1000));
   const weekNumberInt = Math.ceil(days / 7); // Main differnce with previous is here where we pass from day to week
 
-  weekNumber.innerHTML = weekNumberInt // Display on main page the week number
+  weekNumber.innerHTML = weekNumberInt; // Display on main page the week number
 }
 
 // Moving Everything Together /////////////////////////////////////
-detailBtn.addEventListener('click', function(){
-  if (isNight) {
-    document.querySelector('.container').classList.toggle('container-detail-night')
-  } else {
-    document.querySelector('.container').classList.toggle('container-detail-day')
-  }
-  document.querySelector('.quote').classList.toggle('more-detail-quote')
-  document.querySelector('.global-info').classList.toggle('more-detail-hour')
-  document.querySelector('.time-detail').classList.toggle('hide')
-  document.querySelector('.more-btn').classList.toggle('btn-up')
-  document.querySelector('.btn-icon-wrap').classList.toggle('btn-bg-alt')
-  document.querySelectorAll('.btn-text').forEach(el => el.classList.toggle('hide'))
-})
+detailBtn.addEventListener("click", function () {
+if(isNight){
+  mainContainer.classList.toggle("container-detail-night");
+  document.querySelectorAll('.u-text-color').forEach(el => el.style.color="white")
+} else {
+  mainContainer.classList.toggle("container-detail-day");
+}
+  document.querySelector(".quote").classList.toggle("more-detail-quote");
+  document.querySelector(".global-info").classList.toggle("more-detail-hour");
+  document.querySelector(".time-detail").classList.toggle("hide");
+  document.querySelector(".more-btn").classList.toggle("btn-up");
+  document.querySelector(".btn-icon-wrap").classList.toggle("btn-bg-alt");
+  document
+    .querySelectorAll(".btn-text")
+    .forEach((el) => el.classList.toggle("hide"));
+});
 
-// is there a better way to implement all change incase of transition ? 
+// is there a better way to implement all change incase of transition ?
 
 ///// API CALLS EVERYTHING ////////////////////////////////////////////
 
-getJoke().then((data) => (quoteText.innerHTML = data.value));
-getLocation();
+// getJoke().then((data) => (quoteText.innerHTML = data.value));
+// getLocation();
 display_currentTime();
+isNight&& mainContainer.classList.add('night_bg')

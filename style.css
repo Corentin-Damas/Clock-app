@@ -168,6 +168,15 @@ p {
   } 
 }
 
+.night_bg {
+  background-image: linear-gradient(
+    to left,
+    hsla(0, 0%, 0%, 0.5),
+    hsla(0, 0%, 0%, 0.5)
+  ),
+  url(assets/desktop/bg-image-nighttime.jpg);
+}
+
 .quote {
   grid-row: 1/2;
   grid-column: 1/2;
@@ -327,7 +336,7 @@ p {
       hsla(0, 0%, 0%, 0.2) 50%,
       rgba(151, 151, 151, 0.2) 50%
     ),
-    url(assets/desktop/bg-image-daytime.jpg);
+    url(assets/desktop/bg-image-nighttime.jpg);
     @media only screen and (max-width: 56.25em) {
       grid-template-rows: 40% 10% 50%;
     } 
@@ -363,12 +372,10 @@ p {
   } 
 }
 
-.detail__timeZone > *,
-.detail__weekDay > *,
-.detail__yearDay > *,
-.detail__weekNumber > * {
-  color: var(--cl-black);
+.u-text-color {
+  color: black;
 }
+
 
 .hide {
   display: none;
