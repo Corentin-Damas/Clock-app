@@ -1,6 +1,4 @@
 const API_KEY_GEOLOC = config.API_KEY_GEOLOC;
-
-const triggerAPICalls = document.querySelector(".btn_apicalls");
 const detailBtn = document.querySelector('.btn')
 
 // GET RANDOM PROGRAMING QUOTE || JOKE /////////////////////////////////////
@@ -28,7 +26,6 @@ if (URL === "https://api.chucknorris.io/jokes/random") {
 async function getLocalisation(URL_LOC) {
   const response = await fetch(URL_LOC);
   const jsonData = await response.json();
-  console.log(jsonData);
   return jsonData;
 }
 
@@ -63,10 +60,10 @@ const hours = document.querySelector(".time-hour");
 const minutes = document.querySelector(".time-min");
 const timeZoneLoc = document.querySelector(".timeZone");
 const timePeriod = document.querySelector(".gi__periodOfDay");
+const timeformat = document.querySelector('.gi__timeFormat')
 const weekDay = document.querySelector('.weekday')
 const yearDay = document.querySelector('.yearDay')
 const weekNumber = document.querySelector('.weekNumber')
-
 const iconDayPeriod = document.querySelector('.icon-day-period')
 
 function display_currentTime() {
@@ -82,6 +79,8 @@ function display_currentTime() {
     timePeriod.innerHTML = "Evening"
     iconDayPeriod.src = "assets/desktop/icon-moon.svg"
   };
+
+  timeformat.innerHTML = currentTime.toUTCString().slice(-4,) // At the end of the string the time zone type is used
 
   // Get Hours and Minutes for the digital clock && make sure that it show 2digits everytime
   const currentHour = currentTime.getHours();
@@ -113,11 +112,8 @@ function display_currentTime() {
     setTimeout(display_currentTime, refresh);
   }
 
-
-  // MORE DETAILS
-
+  // MORE DETAILS Panel
   timeZoneLoc.innerHTML = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get time zone ex Europe/paris
-  
   weekDay.innerHTML = currentTime.getDay() // Get and display day of the week in Integer 0 = Sunday 1= Monday
 
   // Compare the UTC stamp of now and the UTC stamp of the begining of the year
@@ -142,23 +138,7 @@ function display_currentTime() {
   const weekNumberInt = Math.ceil(days / 7); // Main differnce with previous is here where we pass from day to week
 
   weekNumber.innerHTML = weekNumberInt // Display on main page the week number
-
 }
-
-
-
-// DEV TOOLS ////////////////////////////////////////////////
-// Some API are limited on requests, to limit them, i've added a call btn to do all request in one and not evertime the website refresh during development
-// triggerAPICalls.addEventListener("click", function () {
-  // getJoke().then((data) => (quoteText.innerHTML = data.value));
-  // getLocation();
-  // display_currentTime();
-// });
-// getJoke().then((data) => (quoteText.innerHTML = data.value));
-// getLocation();
-display_currentTime();
-
-
 
 // Moving Everything Together /////////////////////////////////////
 detailBtn.addEventListener('click', function(){
@@ -167,8 +147,14 @@ detailBtn.addEventListener('click', function(){
   document.querySelector('.global-info').classList.toggle('more-detail-hour')
   document.querySelector('.time-detail').classList.toggle('hide')
   document.querySelector('.more-btn').classList.toggle('btn-up')
-  // toggle arrow direction 
-  // Change HTML text if condition ? turnury  
+  document.querySelector('.btn-icon-wrap').classList.toggle('btn-bg-alt')
+  document.querySelectorAll('.btn-text').forEach(el => el.classList.toggle('hide'))
 })
 
 // is there a better way to implement all change incase of transition ? 
+
+///// API CALLS EVERYTHING ////////////////////////////////////////////
+
+// getJoke().then((data) => (quoteText.innerHTML = data.value));
+// getLocation();
+display_currentTime();

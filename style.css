@@ -5,6 +5,9 @@
   --cl-white: #fff;
 }
 
+/* 72,75 */
+
+
 *,
 *::after,
 *::before {
@@ -29,6 +32,7 @@ body {
   box-sizing: border-box;
 }
 
+/* /////////////////////////////////////////////// */
 /*TYPOGRAPHY ////////////////////// */
 /*
     font-family: 'Inter', sans-serif;
@@ -87,12 +91,14 @@ p {
   color: var(--cl-white);
 }
 
+/* /////////////////////////////////////////////// */
 /* MAIN ////////////////////// */
 
 .container {
   width: 100%;
   height: 100vh;
   padding-inline: 17rem;
+  padding-bottom: 6rem;
 
   background-image: linear-gradient(
       to left,
@@ -128,17 +134,27 @@ p {
   align-self: flex-end;
 }
 
+.icon-period {
+  display: block;
+  max-width: 100%;
+}
+
 .quote__text {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .global-info > *:not(:last-child) {
-  margin-bottom: 2.6rem;
+  margin-bottom: 2rem;
 }
 
 .gi__welcome {
   display: flex;
   gap: 2rem;
+}
+.icon-period {
+  display: block;
+  width: 3rem;
+  height: 3rem;
 }
 
 .gi__clock {
@@ -146,6 +162,9 @@ p {
   align-items: baseline;
   gap: 3rem;
 }
+
+/* /////////////////////////////////////////////// */
+/* BUTTONS //// */
 
 .btn,
 .btn:active,
@@ -176,41 +195,23 @@ p {
   width: 4rem;
   height: 4rem;
   position: relative;
-  background-color: var(--cl-black);
+  background-image: url(assets/desktop/icon-arrow-down.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: black;
   border-radius: 50%;
 }
 
-.btn:hover .btn-icon-wrap {
+.btn-bg-alt {
+  background-image: url(assets/desktop/icon-arrow-up.svg);
+}
+
+.btn:hover .btn-icon-wrap{
   background-color: var(--cl-grey);
 }
 
-.btn-icon {
-  /* create icon here or doing a ::after in icon-wrap */
-  /* background-image: url(assets/desktop/icon-arrow-down.svg); */
-  /* position: absolute; */
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
-}
-
-.btn-icon::after {
-  background-color: blue;
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100;
-}
-
-.btn_apicalls {
-  position: absolute;
-  top: 3rem;
-  right: 4rem;
-  padding: 3rem;
-}
-
-/* DETAILS ////////////////////// */
+/* /////////////////////////////////////////////// */
+/* DETAILS ///// */
 
 .u-black {
   color: var(--cl-black);
@@ -229,18 +230,23 @@ p {
   grid-column: 2/3;
 }
 
+/* /////////////////////////////////////////////// */
+/* 2nd Panel ///// */
+
 .btn-up {
   grid-row: 1/2;
   grid-column: 2/3;
 }
 
 .container-detail {
+  padding-bottom: 0rem;
   background-image: linear-gradient(
       to bottom,
       hsla(0, 0%, 0%, 0.5) 50%,
-      rgb(151, 151, 151) 50%
+      rgba(151, 151, 151, 0.5) 50%
     ),
     url(assets/desktop/bg-image-daytime.jpg);
+  
 }
 
 .time-detail {
@@ -252,6 +258,7 @@ p {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
+  backdrop-filter: blur(10px);
 }
 
 .detail__timeZone > *,
