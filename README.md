@@ -22,7 +22,7 @@ Users should be able to:
 I'm using a Chuck Noris / "Dad Joke" Kind-of Api to get some random quote because they were easy to access without API key or register to do
 
 ### Screenshot
-This my solution to the [Clock app challenge on Frontend Mentor](/screenshots/my_solution.jpg).
+![](/screenshots/my_solution.jpg).
 
 ### Built with
 
