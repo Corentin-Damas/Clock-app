@@ -1,6 +1,7 @@
 const API_KEY_GEOLOC = config.API_KEY_GEOLOC;
 const detailBtn = document.querySelector('.btn')
 
+let isNight = false
 // GET RANDOM PROGRAMING QUOTE || JOKE /////////////////////////////////////
 const quoteText = document.querySelector(".quote__text");
 const quoteAuthor = document.querySelector(".quote__author");
@@ -78,6 +79,7 @@ function display_currentTime() {
   } else {
     timePeriod.innerHTML = "Evening"
     iconDayPeriod.src = "assets/desktop/icon-moon.svg"
+    isNight = true
   };
 
   timeformat.innerHTML = currentTime.toUTCString().slice(-4,) // At the end of the string the time zone type is used
@@ -142,7 +144,11 @@ function display_currentTime() {
 
 // Moving Everything Together /////////////////////////////////////
 detailBtn.addEventListener('click', function(){
-  document.querySelector('.container').classList.toggle('container-detail')
+  if (isNight) {
+    document.querySelector('.container').classList.toggle('container-detail-night')
+  } else {
+    document.querySelector('.container').classList.toggle('container-detail-day')
+  }
   document.querySelector('.quote').classList.toggle('more-detail-quote')
   document.querySelector('.global-info').classList.toggle('more-detail-hour')
   document.querySelector('.time-detail').classList.toggle('hide')
@@ -155,6 +161,6 @@ detailBtn.addEventListener('click', function(){
 
 ///// API CALLS EVERYTHING ////////////////////////////////////////////
 
-// getJoke().then((data) => (quoteText.innerHTML = data.value));
-// getLocation();
+getJoke().then((data) => (quoteText.innerHTML = data.value));
+getLocation();
 display_currentTime();
